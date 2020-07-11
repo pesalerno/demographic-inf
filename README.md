@@ -57,16 +57,20 @@ Here are the final *Stefania*  [neutral](https://github.com/pesalerno/Chimanta-g
 2. **Filter for Linkage Disequilibrium** 
 ---
 
-Using the `.ped` and `.map` input files, we can check for LD using plink with the following code: 
+Using the `.ped` and `.map` input files (which were transformed using `PGDSpider`, we can check for LD using plink with the following code: 
 
 	plink --noweb --file mydata --r2 --out outputfilename 
 	
 	
 The pairs of loci are then exported into excel and we filter out one of the two - or more - loci that are linked to one another.
 
- 
+To filter out excess spaces in the file, we run the short command:
 
-In order to create a blacklist of loci in LD to exclude form the SNP matrix, we used find/replace arguments in TextWrangler to create a list of SNPs like this:
+	cat Stef-LD.ld | tr -s ' ' > LD-stef-b
+ 
+Then we can decide which SNPs to filter visualizing the matrix in excel. I filtered all SNPs that were more than 80% associated in each matrix, which resulted in a much higher numner of loci excluded in *Tepuihyla* (1173 SNPs) than in *Stefania* (89 SNPs). 
+
+In order to create a blacklist of loci in LD to exclude from the SNP matrix, we used find/replace arguments in TextWrangler to create a list of SNPs like this:
 
 	59185_31
 	539339_84
