@@ -156,27 +156,27 @@ Thus, the demographic models to test for ***Stefania*** are:
 1. **no-migration models:** here we will test various divergence scenarios for the three populations and assess AIC supports. The parameters to vary are time to divergence and population size (constant).
 
 
-model |	T1|	T2 |	N1 | N2 | N3 |
--------------|------|------|-----|------|------|
-model |	T1|	T2|	N1 | N2 | N3 |
-model |	T1|	T2|	N1 | N2 | N3 |
-model |	T1|	T2|	N1 | N2 | N3 |
-model |	T1|	T2|	N1 | N2 | N3 |
-model |	T1|	T2|	N1 | N2 | N3 |
-model |	T1|	T2|	N1 | N2 | N3 |
-model |	T1|	T2|	N1 | N2 | N3 |
+>model |	T1|	T2 |	N1 | N2 | N3 |
+>-------------|------|------|-----|------|------|
+>stef1_a |	T1|	T2|	N1 | N2 | N3 |
+stef1_b |	T1|	T2|	N1 | N2 | N3 |
+stef1_c |	T1|	T2|	N1 | N2 | N3 |
+stef1_d |	T1|	T2|	N1 | N2 | N3 |
+stef1_e |	T1|	T2|	N1 | N2 | N3 |
+stef1_f |	T1|	T2|	N1 | N2 | N3 |
+stef1_g |	T1|	T2|	N1 | N2 | N3 |
 
 2. **migration models:** based on the previous results of best models, we will test various migration scenarios for the three populations and assess AIC supports. The parameters to vary are time to divergence, population size (constant), and migrations among populations.
 
-model |	T1|	T2 |	N1 | N2 | N3 | m1 | m2 | m3 |
--------------|------|------|-----|------|------|------|------|------- |
-model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
-model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
-model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
-model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
-model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
-model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
-model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+>model |	T1|	T2 |	N1 | N2 | N3 | m1 | m2 | m3 |
+>-------------|------|------|-----|------|------|------|------|------- |
+stef2_a |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+stef2_b |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+stef2_c |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+stef2_d |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+stef2_e |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+stef2_f |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+stef2_g |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
 
 --------------------------
 >**Basic *Tepuihyla* Demographic Models setup.** For *Tepuihyla*, we have the same three sampled populations atop Chimantá, plus an additional sampled population on the neighboring formation of Auyantepui, and we mostly observe very little information/signal from `mtDNA` when compared to `nuDNA`, as observed in the below graphs: 
