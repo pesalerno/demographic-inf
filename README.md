@@ -130,7 +130,8 @@ Based on the original population localities for *Stefania* and *Tepuihyla*, we a
 
 ----
 ## Preparing other input files for analyses
-------
+
+
 >esto es para que Alex termine de rellenar/hacer de acuerdo al [tutorial de RADcamp](https://radcamp.github.io/Yale2019/07_momi2_API.html). 
 
 **BED file**: This file specifies genomic regions to include in when calculating the SFS. It is composed of 3 columns which specify ‘chrom’, ‘chromStart’, and ‘chromEnd’.
@@ -141,14 +142,19 @@ Based on the original population localities for *Stefania* and *Tepuihyla*, we a
 
 ----
 ## First set of demographic inference models
-------
 
-We will begin by running basic demographic models, which are based both on sampling/distributions of the species and on the results from previous analyses. Also, the setup of these models is based a lot on [this publication]().
 
-**Basic *Stefania* Demographic Models.** For *Stefania*, we have three sampled populations atop Chimantá, and we observe two incongruent inferred histories between `mtDNA` and `nuDNA`, as observed in the below graphs: 
+We will begin by running basic demographic models, which are based both on sampling/distributions of the species and on the results from previous analyses. Also, the setup of these models is based a lot on [this publication](https://github.com/pesalerno/demographic-inf/blob/master/files/passerines-demography.pdf).
 
-![](https://github.com/pesalerno/demographic-inf/blob/master/files/stefania-trees.png)
+>**Basic *Stefania* Demographic Models.** For *Stefania*, we have three sampled populations atop Chimantá, and we observe two incongruent inferred histories between `mtDNA` and `nuDNA`, as observed in the below graphs: 
 
+>![](https://github.com/pesalerno/demographic-inf/blob/master/files/stefania-trees.png)
+
+Thus, the demographic models to test are: 
+
+***Stefania***: 
+
+1. no-migration models: here we will test various divergence scenarios for the three populations to assess AIC 
 
 **Basic *Tepuihyla* Demographic Models.** For *Tepuihyla*, we have the same three sampled populations atop Chimantá, plus an additional sampled population on the neighboring formation of Auyantepui, and we mostly observe very little information/signal from `mtDNA` when compared to `nuDNA`, as observed in the below graphs: 
 
