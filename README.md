@@ -141,4 +141,13 @@ Based on the original population localities for Stefania and Tepuihyla, we assig
 5. Running demographic inference models
 ------
 
-We will begin by running basic demographic models, 
+We will begin by running basic demographic models, which are based both on sampling/distributions of the species and on the results from previous analyses. 
+
+For *Stefania*, we infer that xxxx...
+
+![](https://github.com/pesalerno/demographic-inf/blob/master/files/stefania-trees.png)
+
+
+For *Tepuihyla*, we infer that xxxx...
+
+![](https://github.com/pesalerno/demographic-inf/blob/master/files/tepuihyla-trees.png)
