@@ -146,16 +146,39 @@ Based on the original population localities for *Stefania* and *Tepuihyla*, we a
 
 We will begin by running basic demographic models, which are based both on sampling/distributions of the species and on the results from previous analyses. Also, the setup of these models is based a lot on [this publication](https://github.com/pesalerno/demographic-inf/blob/master/files/passerines-demography.pdf).
 
->**Basic *Stefania* Demographic Models.** For *Stefania*, we have three sampled populations atop Chimantá, and we observe two incongruent inferred histories between `mtDNA` and `nuDNA`, as observed in the below graphs: 
-
+>**Basic *Stefania* Demographic Models setup.** For *Stefania*, we have three sampled populations atop Chimantá, and we observe two incongruent inferred histories between `mtDNA` and `nuDNA`, as observed in the below graphs: 
+>
 >![](https://github.com/pesalerno/demographic-inf/blob/master/files/stefania-trees.png)
 
-Thus, the demographic models to test are: 
+Thus, the demographic models to test for ***Stefania*** are: 
 
-***Stefania***: 
 
-1. no-migration models: here we will test various divergence scenarios for the three populations to assess AIC 
+1. **no-migration models:** here we will test various divergence scenarios for the three populations and assess AIC supports. The parameters to vary are time to divergence and population size (constant).
 
-**Basic *Tepuihyla* Demographic Models.** For *Tepuihyla*, we have the same three sampled populations atop Chimantá, plus an additional sampled population on the neighboring formation of Auyantepui, and we mostly observe very little information/signal from `mtDNA` when compared to `nuDNA`, as observed in the below graphs: 
 
-![](https://github.com/pesalerno/demographic-inf/blob/master/files/tepuihyla-trees.png)
+model |	T1|	T2 |	N1 | N2 | N3 |
+-------------|------|------|-----|------|------|
+model |	T1|	T2|	N1 | N2 | N3 |
+model |	T1|	T2|	N1 | N2 | N3 |
+model |	T1|	T2|	N1 | N2 | N3 |
+model |	T1|	T2|	N1 | N2 | N3 |
+model |	T1|	T2|	N1 | N2 | N3 |
+model |	T1|	T2|	N1 | N2 | N3 |
+model |	T1|	T2|	N1 | N2 | N3 |
+
+2. **migration models:** based on the previous results of best models, we will test various migration scenarios for the three populations and assess AIC supports. The parameters to vary are time to divergence, population size (constant), and migrations among populations.
+
+model |	T1|	T2 |	N1 | N2 | N3 | m1 | m2 | m3 |
+-------------|------|------|-----|------|------|------|------|------- |
+model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+model |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+
+--------------------------
+>**Basic *Tepuihyla* Demographic Models setup.** For *Tepuihyla*, we have the same three sampled populations atop Chimantá, plus an additional sampled population on the neighboring formation of Auyantepui, and we mostly observe very little information/signal from `mtDNA` when compared to `nuDNA`, as observed in the below graphs: 
+>
+>![](https://github.com/pesalerno/demographic-inf/blob/master/files/tepuihyla-trees.png)
