@@ -143,13 +143,13 @@ Based on the original population localities for *Stefania* and *Tepuihyla*, we a
 ## First set of demographic inference models
 ------
 
-We will begin by running basic demographic models, which are based both on sampling/distributions of the species and on the results from previous analyses. 
+We will begin by running basic demographic models, which are based both on sampling/distributions of the species and on the results from previous analyses. Also, the setup of these models is based a lot on [this publication]().
 
 **Basic *Stefania* Demographic Models.** For *Stefania*, we have three sampled populations atop Chimantá, and we observe two incongruent inferred histories between `mtDNA` and `nuDNA`, as observed in the below graphs: 
 
 ![](https://github.com/pesalerno/demographic-inf/blob/master/files/stefania-trees.png)
 
 
-**Basic *Tepuihyla* Demographic Models.** For *Tepuihyla*, we infer that xxxx...
+**Basic *Tepuihyla* Demographic Models.** For *Tepuihyla*, we have the same three sampled populations atop Chimantá, plus an additional sampled population on the neighboring formation of Auyantepui, and we mostly observe very little information/signal from `mtDNA` when compared to `nuDNA`, as observed in the below graphs: 
 
 ![](https://github.com/pesalerno/demographic-inf/blob/master/files/tepuihyla-trees.png)
