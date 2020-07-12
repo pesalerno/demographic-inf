@@ -7,7 +7,7 @@ The following is the workflow for setting up the input files and running the dem
 3. *Pseudacris regilla* from Channel Islands and mainland - 4 populations
 4. *Xantusia riversiana* from Channel Islands - 3 populations
 
-Prepping the input SNP matrix
+Prepping the input SNP matrix (`vcf`)
 --------
 
 In order to run a proper demographic analysis, we should have a filtered SNP matrix which excludes: 
@@ -54,7 +54,7 @@ Here are the final *Stefania*  [neutral](https://github.com/pesalerno/Chimanta-g
 
 ---------------------
 
-2. **Filter for Linkage Disequilibrium** 
+2. **Filtering loci under Linkage Disequilibrium** 
 ---
 
 Using the `.ped` and `.map` input files (which were transformed using `PGDSpider`, we can check for LD using plink with the following code: 
@@ -86,19 +86,21 @@ And then using this file (named **LD-loci-list.txt**) we generate our LE SNP mat
 
 --------------------
 
-3. Prepping the vcf file
+3. **Transforming and exporting the vcf file**
 ----
-Properly formatted VCF
-In this tutorial we are using a very small dataset, so manipulating the VCF is very fast. With real data the VCF file can be enormous, which makes processing it very slow. momi2 expects very large input files, so it insists on having them preprocessed to speed things up. The details of this preprocessing step are not very interesting, but we are basically compressing and indexing the VCF so it’s faster to search.
 
-	%%bash
-	## bgzip performs a blockwise compression
-	## The -c flag directs bgzip to leave the original vcf file 
-	##   untouched and create a new file for the vcf.gz
+> Add details here on transforming `.ped` to `.vcf` using `vcftools/bcftools`
+
+**Properly formatted VCF.** momi2 expects very large input files, so it needs them to be preprocessed to speed things up. The details of this preprocessing step are not very interesting, but we are basically compressing and indexing the VCF so it’s faster to search.
+
+
+First, we perform a blockwise compression using `bgzip`. The -c flag directs bgzip to leave the original vcf file untouched and create a new file for the vcf.gz
+	
 	cp /rigel/edu/radcamp/users/work1/ipyrad-workshop/anoles_outfiles/	anoles.vcf anolis.vcf
 	bgzip -c anolis.vcf > anolis.vcf.gz
 
-	## tabix indexes the file for searching
+Second, we index the file for searching using `tabix`: 
+
 	tabix anolis.vcf.gz
 	ls
 	anolis.alleles.loci  anolis.loci      anolis.snps.phy	anolis.u.snps.phy
@@ -110,7 +112,7 @@ In this tutorial we are using a very small dataset, so manipulating the VCF is v
 4. Prepping the population assignment file
 ------
 
-Based on the results of the PCA and also our knowledge of the geographic location of the samples we will assign 2 samples to the “North” population, and 8 samples to the “South” population:
+Based on the original population localities for Stefania and Tepuihyla, we assigned samples to one of the three Chimantá populations - Abakapá (`AB`), Churí (`CH`), and Eruoda (`ER`), or to Auyantepui (`AU`; only for Tepuihyla): the “North” population, and 8 samples to the “South” population:
 
 	cat anolis_pops.txt
 	punc_ICST764    North
@@ -127,6 +129,7 @@ Based on the results of the PCA and also our knowledge of the geographic locatio
 ----
 4. Prepping other input files for analyses
 ------
+>esto es para que Alex termine de rellenar/hacer de acuerdo al [tutorial de RADcamp](https://radcamp.github.io/Yale2019/07_momi2_API.html). 
 
 **BED file**: This file specifies genomic regions to include in when calculating the SFS. It is composed of 3 columns which specify ‘chrom’, ‘chromStart’, and ‘chromEnd’.
 
@@ -138,3 +141,4 @@ Based on the results of the PCA and also our knowledge of the geographic locatio
 5. Running demographic inference models
 ------
 
+We will begin by running basic demographic models, 
