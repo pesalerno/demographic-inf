@@ -7,8 +7,8 @@ The following is the workflow for setting up the input files and running the dem
 3. *Pseudacris regilla* from Channel Islands and mainland - 4 populations
 4. *Xantusia riversiana* from Channel Islands - 3 populations
 
-Prepping the input SNP matrix (`vcf`)
---------
+## Preparing the input SNP matrix (`vcf`)
+
 
 In order to run a proper demographic analysis, we should have a filtered SNP matrix which excludes: 
 
@@ -109,25 +109,27 @@ Second, we index the file for searching using `tabix`:
 	anolis.hdf5	     anolis.snps.map  anolis.u.geno	anolis.vcf.gz.tbi
 
 ------------------
-4. Prepping the population assignment file
-------
 
-Based on the original population localities for Stefania and Tepuihyla, we assigned samples to one of the three Chimantá populations - Abakapá (`AB`), Churí (`CH`), and Eruoda (`ER`), or to Auyantepui (`AU`; only for Tepuihyla): the “North” population, and 8 samples to the “South” population:
+## Preparing the population assignment file
 
-	cat anolis_pops.txt
-	punc_ICST764    North
-	punc_MUFAL9635  North
-	punc_IBSPCRIB0361       South
-	punc_JFT773     South
-	punc_MTR05978   South
-	punc_MTR17744   South
-	punc_MTR21545   South
-	punc_MTR34414   South
-	punc_MTRX1468   South
-	punc_MTRX1478   South
+
+Based on the original population localities for *Stefania* and *Tepuihyla*, we assigned individual specimen samples to one of the three Chimantá populations - Abakapá (`AB`), Churí (`CH`), and Eruoda (`ER`), or to Auyantepui (`AU`; only for *Tepuihyla*): the “North” population, and 8 samples to the “South” population:
+
+	punc_ICST764    AB
+	punc_MUFAL9635  AB
+	punc_IBSPCRIB0361       ER
+	punc_JFT773     ER
+	punc_MTR05978   ER
+	punc_MTR17744   CH
+	punc_MTR21545   CH
+	punc_MTR34414   CH
+	punc_MTRX1468   CH
+	punc_MTRX1478   CH
+	.
+	#etc...
 
 ----
-4. Prepping other input files for analyses
+## Preparing other input files for analyses
 ------
 >esto es para que Alex termine de rellenar/hacer de acuerdo al [tutorial de RADcamp](https://radcamp.github.io/Yale2019/07_momi2_API.html). 
 
@@ -138,16 +140,16 @@ Based on the original population localities for Stefania and Tepuihyla, we assig
 **Genereate the SFS**: The culmination of all this housekeeping is the SFS file which we will use for demographic inference.
 
 ----
-5. Running demographic inference models
+## First set of demographic inference models
 ------
 
 We will begin by running basic demographic models, which are based both on sampling/distributions of the species and on the results from previous analyses. 
 
-For *Stefania*, we infer that xxxx...
+**Basic *Stefania* Demographic Models.** For *Stefania*, we have three sampled populations atop Chimantá, and we observe two incongruent inferred histories between `mtDNA` and `nuDNA`, as observed in the below graphs: 
 
 ![](https://github.com/pesalerno/demographic-inf/blob/master/files/stefania-trees.png)
 
 
-For *Tepuihyla*, we infer that xxxx...
+**Basic *Tepuihyla* Demographic Models.** For *Tepuihyla*, we infer that xxxx...
 
 ![](https://github.com/pesalerno/demographic-inf/blob/master/files/tepuihyla-trees.png)
