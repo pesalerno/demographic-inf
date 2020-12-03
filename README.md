@@ -91,6 +91,14 @@ And then using this file (named **LD-loci-list.txt**) we generate our LE SNP mat
 
 > Add details here on transforming `.ped` to `.vcf` using `vcftools/bcftools`
 
+We used the program `vcftools` to transform the 
+
+
+>DESDE ACA EN ADELANTE HAY QUE TRABAJAR EN EL CODIGO. El codigo e instrucciones de abajo estan basados en el [tutorial de RADcamp](https://radcamp.github.io/Yale2019/07_momi2_API.html). 
+>
+
+
+
 **Properly formatted VCF.** momi2 expects very large input files, so it needs them to be preprocessed to speed things up. The details of this preprocessing step are not very interesting, but we are basically compressing and indexing the VCF so it’s faster to search.
 
 
@@ -132,7 +140,6 @@ Based on the original population localities for *Stefania* and *Tepuihyla*, we a
 ## Preparing other input files for analyses
 
 
->esto es para que Alex termine de rellenar/hacer de acuerdo al [tutorial de RADcamp](https://radcamp.github.io/Yale2019/07_momi2_API.html). 
 
 **BED file**: This file specifies genomic regions to include in when calculating the SFS. It is composed of 3 columns which specify ‘chrom’, ‘chromStart’, and ‘chromEnd’.
 
@@ -144,16 +151,50 @@ Based on the original population localities for *Stefania* and *Tepuihyla*, we a
 ## First set of demographic inference models
 
 
-We will begin by running basic demographic models, which are based both on sampling/distributions of the species and on the results from previous analyses. Also, the setup of these models is based a lot on [this publication](https://github.com/pesalerno/demographic-inf/blob/master/files/passerines-demography.pdf).
+We will begin by running basic demographic models, which are based both on sampling/distributions of the species and on the results from previous analyses. Also, the setup of these models is based a lot on [this publication](https://github.com/pesalerno/demographic-inf/blob/master/files/passerines-demography.pdf), as well as on [this tutorial](https://radcamp.github.io/NYC2019/07_momi2_API.html) and on the [momi2 manual](https://buildmedia.readthedocs.org/media/pdf/momi2/latest/momi2.pdf).
 
->**Basic *Stefania* Demographic Models setup.** For *Stefania*, we have three sampled populations atop Chimantá, and we observe two incongruent inferred histories between `mtDNA` and `nuDNA`, as observed in the below graphs: 
->
->![](https://github.com/pesalerno/demographic-inf/blob/master/files/stefania-trees.png)
+**Basic *Stefania* Demographic Models setup.**  
 
-Thus, the demographic models to test for ***Stefania*** are: 
+The first set of demographic models to test for ***Stefania*** are: 
+
+1. **Divergence-only.** Leaving the defaults for population size prior.
+
+	div_only_model_a = momi.DemographicModel(Ne=1.2e4, gen_time=2)
+	
+	div_only_model_a.set_Data(sfs)
+	
+	div_only_model_a.add_time_param("t_ERU_CHU", lower=1e4) #random initial value; user-specified lower bound
+	
+	div_only_model_a.add_time_param("tdiv1") #add both times
+	div_only_model_a.add_time_param("tdiv1") #add both times
+	div_only_model_a.add_leaf() #add all populations (CHU, ABA, ERU)
+	div_only_model_a.optimize(method="TNC")
+
+2. **Divergence+migration.** Leaving defaults for population size, we will estimate high and low levels of migration for all three clades. 
+
+	div_mig_model_a = momi.DemographicModel(Ne=1.2e4, gen_time=2)
+	
+	div_mig_model_a.add_time_param("t_ERU_CHU", lower=1e4) #random initial value; user-specified lower bound
+	
+	div_mig_model_a.add_time_param("tdiv1") #add both times
+	div_mig_model_a.add_leaf() #add all populations (CHU, ABA, ERU)
+	div_mig_model_a.move-lineages("", "", t="tdiv") #add both "movements"
+	
+	div_mig_model_a.optimize(method="TNC")
+	
+3. **Divergence+migrations+expansions.** 
 
 
-1. **no-migration models:** here we will test various divergence scenarios for the three populations and assess AIC supports. The parameters to vary are time to divergence and population size (constant).
+4. **Divergence+migrations+bottleneck.** 
+
+
+
+## Full set of demographic inference models
+
+> These are for after we evaluate the first set of preliminary models. I also need to talk to other people to make sure we are doing the parameter permutations that need to be done. 
+> 
+
+1.-**divergence-only models:** here we will test various divergence scenarios for the three populations and assess AIC supports. The parameters to vary are time to divergence and population size (constant).
 
 
 >model |	T1|	T2 |	N1 | N2 | N3 |
@@ -166,19 +207,33 @@ Thus, the demographic models to test for ***Stefania*** are:
 >stef1_f |	T1|	T2|	N1 | N2 | N3 |
 >stef1_g |	T1|	T2|	N1 | N2 | N3 |
 
-2. **migration models:** based on the previous results of best models, we will test various migration scenarios for the three populations and assess AIC supports. The parameters to vary are time to divergence, population size (constant), and migrations among populations.
+2.-**migration models:** based on the previous results of best models, we will test various migration scenarios for the three populations and assess AIC supports. The parameters to vary are time to divergence, population size (constant), and migrations among populations.
 
->model |	T1|	T2 |	N1 | N2 | N3 | m1 | m2 | m3 |
->-------------|------|------|-----|------|------|------|------|------- |
->stef2_a |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
->stef2_b |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
->stef2_c |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
->stef2_d |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
->stef2_e |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
->stef2_f |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
->stef2_g |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | m3 |
+>model |	T1|	T2 |	N1 | N2 | N3 | m1 | m2 | 
+>-------------|------|------|-----|------|------|------|------|
+>stef2_a |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | 
+>stef2_b |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | 
+>stef2_c |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | 
+>stef2_d |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | 
+>stef2_e |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | 
+>stef2_f |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | 
+>stef2_g |	T1|	T2|	N1 | N2 | N3 | m1 | m2 | 
 
---------------------------
->**Basic *Tepuihyla* Demographic Models setup.** For *Tepuihyla*, we have the same three sampled populations atop Chimantá, plus an additional sampled population on the neighboring formation of Auyantepui, and we mostly observe very little information/signal from `mtDNA` when compared to `nuDNA`, as observed in the below graphs: 
+
+3.-**population expansion models:** we will test various population expansion scenarios building upon the previous models. 
+
+4.-**population bottleneck models:** we will test various population blottleneck scenarios building upon the second (migration) models. 
+
+----------------------------------------
+**Basic *Tepuihyla* Demographic Models setup.** 
+>
+>
+>--------------------------------------------------------
+>For *Tepuihyla*, we have three sampled populations atop Chimantá, plus an additional sampled population on the neighboring formation of Auyantepui, and we mostly observe very little information/signal from `mtDNA` when compared to `nuDNA`, as observed in the below graphs: 
 >
 >![](https://github.com/pesalerno/demographic-inf/blob/master/files/tepuihyla-trees.png)
+>
+>
+>For *Stefania*, we have the same three sampled populations atop Chimantá, and we observe two incongruent inferred histories between `mtDNA` and `nuDNA`, as observed in the below graphs: 
+>
+>![](https://github.com/pesalerno/demographic-inf/blob/master/files/stefania-trees.png)
