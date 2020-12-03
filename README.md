@@ -82,19 +82,31 @@ In order to create a blacklist of loci in LD to exclude from the SNP matrix, we 
 And then using this file (named **LD-loci-list.txt**) we generate our LE SNP matrix using *plink*: 
 
 	./plink --file filename --exclude LD-loci-list.txt --recode --out LD-filtered
-	
 
 --------------------
 
-3. **Transforming and exporting the vcf file**
+3. **Preparing the population assignment file**
 ----
 
-> Add details here on transforming `.ped` to `.vcf` using `vcftools/bcftools`
 
-We used the program `vcftools` to transform the 
+Based on the original population localities for *Stefania* and *Tepuihyla*, we assigned individual specimen samples to one of the three Chimantá populations - Abakapá (`ABA`), Churí (`CHU`), and Eruoda (`ERU`), or to Auyantepui (`AUY`; only for *Tepuihyla*): 
+
+Here is the [Stefania population assignment file](). 
 
 
->DESDE ACA EN ADELANTE HAY QUE TRABAJAR EN EL CODIGO. El codigo e instrucciones de abajo estan basados en el [tutorial de RADcamp](https://radcamp.github.io/Yale2019/07_momi2_API.html). 
+
+--------------------
+
+4. **Transforming and exporting the vcf file**
+----
+
+
+We used `plink v1.09` to transform the `.ped` files to `.vcf` format to be used later: 
+
+	plink --file Tep-neutral-LE --recode vcf --out Tep_vcf --noweb 
+
+
+>DESDE ACA EN ADELANTE HAY QUE TRABAJAR EN EL CODIGO. El codigo e instrucciones de abajo estan basados en el [tutorial de RADcamp](https://radcamp.github.io/Yale2019/07_momi2_API.html) y en el [manual del programa](https://buildmedia.readthedocs.org/media/pdf/momi2/latest/momi2.pdf). 
 >
 
 
@@ -117,24 +129,6 @@ Second, we index the file for searching using `tabix`:
 	anolis.hdf5	     anolis.snps.map  anolis.u.geno	anolis.vcf.gz.tbi
 
 ------------------
-
-## Preparing the population assignment file
-
-
-Based on the original population localities for *Stefania* and *Tepuihyla*, we assigned individual specimen samples to one of the three Chimantá populations - Abakapá (`AB`), Churí (`CH`), and Eruoda (`ER`), or to Auyantepui (`AU`; only for *Tepuihyla*): the “North” population, and 8 samples to the “South” population:
-
-	punc_ICST764    AB
-	punc_MUFAL9635  AB
-	punc_IBSPCRIB0361       ER
-	punc_JFT773     ER
-	punc_MTR05978   ER
-	punc_MTR17744   CH
-	punc_MTR21545   CH
-	punc_MTR34414   CH
-	punc_MTRX1468   CH
-	punc_MTRX1478   CH
-	.
-	#etc...
 
 ----
 ## Preparing other input files for analyses
