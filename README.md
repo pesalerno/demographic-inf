@@ -153,33 +153,33 @@ The first set of demographic models to test for ***Stefania*** are:
 
 1. **Divergence-only.** Leaving the defaults for population size prior.
 
-	div_only_model_a = momi.DemographicModel(Ne=1.2e4, gen_time=2)
+		div_only_model_a = momi.DemographicModel(Ne=1.2e4, gen_time=2)
 	
-	div_only_model_a.set_Data(sfs)
+		div_only_model_a.set_Data(sfs)
 	
-	div_only_model_a.add_time_param("t_ERU_CHU", lower=1e4) #random initial value; user-specified lower bound
+		div_only_model_a.add_time_param("t_ERU_CHU", lower=1e4) #random initial value; user-specified lower bound
 	
-	div_only_model_a.add_time_param("tdiv1") #add both times
+		div_only_model_a.add_time_param("tdiv1") #add both times
 	
-	div_only_model_a.add_time_param("tdiv1") #add both times
+		div_only_model_a.add_time_param("tdiv1") #add both times
 	
-	div_only_model_a.add_leaf() #add all populations (CHU, ABA, ERU)
+		div_only_model_a.add_leaf() #add all populations (CHU, ABA, ERU)
 	
-	div_only_model_a.optimize(method="TNC")
+		div_only_model_a.optimize(method="TNC")
 
 2. **Divergence+migration.** Leaving defaults for population size, we will estimate high and low levels of migration for all three clades. 
 
-	div_mig_model_a = momi.DemographicModel(Ne=1.2e4, gen_time=2)
+		div_mig_model_a = momi.DemographicModel(Ne=1.2e4, gen_time=2)
 	
-	div_mig_model_a.add_time_param("t_ERU_CHU", lower=1e4) #random initial value; user-specified lower bound
+		div_mig_model_a.add_time_param("t_ERU_CHU", lower=1e4) #random initial value; user-specified lower bound
 	
-	div_mig_model_a.add_time_param("tdiv1") #add both times
+		div_mig_model_a.add_time_param("tdiv1") #add both times
 	
-	div_mig_model_a.add_leaf() #add all populations (CHU, ABA, ERU)
+		div_mig_model_a.add_leaf() #add all populations (CHU, ABA, ERU)
 	
-	div_mig_model_a.move-lineages("", "", t="tdiv") #add both "movements"
+		div_mig_model_a.move-lineages("", "", t="tdiv") #add both "movements"
 	
-	div_mig_model_a.optimize(method="TNC")
+		div_mig_model_a.optimize(method="TNC")
 	
 3. **Divergence+migrations+expansions.** 
 
