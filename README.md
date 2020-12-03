@@ -91,7 +91,7 @@ And then using this file (named **LD-loci-list.txt**) we generate our LE SNP mat
 
 Based on the original population localities for *Stefania* and *Tepuihyla*, we assigned individual specimen samples to one of the three Chimantá populations - Abakapá (`ABA`), Churí (`CHU`), and Eruoda (`ERU`), or to Auyantepui (`AUY`; only for *Tepuihyla*): 
 
-Here is the [Stefania population assignment file](). 
+Here is the [Stefania population assignment file](https://github.com/pesalerno/demographic-inf/blob/master/files/Stef_pops.txt). 
 
 
 
@@ -160,8 +160,11 @@ The first set of demographic models to test for ***Stefania*** are:
 	div_only_model_a.add_time_param("t_ERU_CHU", lower=1e4) #random initial value; user-specified lower bound
 	
 	div_only_model_a.add_time_param("tdiv1") #add both times
+	
 	div_only_model_a.add_time_param("tdiv1") #add both times
+	
 	div_only_model_a.add_leaf() #add all populations (CHU, ABA, ERU)
+	
 	div_only_model_a.optimize(method="TNC")
 
 2. **Divergence+migration.** Leaving defaults for population size, we will estimate high and low levels of migration for all three clades. 
@@ -171,7 +174,9 @@ The first set of demographic models to test for ***Stefania*** are:
 	div_mig_model_a.add_time_param("t_ERU_CHU", lower=1e4) #random initial value; user-specified lower bound
 	
 	div_mig_model_a.add_time_param("tdiv1") #add both times
+	
 	div_mig_model_a.add_leaf() #add all populations (CHU, ABA, ERU)
+	
 	div_mig_model_a.move-lineages("", "", t="tdiv") #add both "movements"
 	
 	div_mig_model_a.optimize(method="TNC")
